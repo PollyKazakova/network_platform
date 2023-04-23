@@ -18,7 +18,7 @@ def index(request):
 def upload(request):
     if request.method == 'POST':
 
-        new_post = Post.objects.create(user=request.user.username, image=request.files.get('image_upload'),
+        new_post = Post.objects.create(user=request.user.username, image=request.FILES.get('image_upload'),
                                        caption=request.POST['caption'])
         new_post.save()
     return redirect('/')
