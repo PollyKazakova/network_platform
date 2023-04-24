@@ -57,7 +57,6 @@
                             </div>
 
                             <!-- notification contents -->
-                                                    <!-- notification contents -->
                             <div class="flex justify-center flex-center text-center">
 
                                 <div class="flex flex-col choose-upload text-center">
@@ -114,7 +113,6 @@
 
 
                         <!-- profile -->
-
                         <a href="#">
                             <img src="{{user_profile.profile_img.url}}" class="header-avatar" alt="">
                         </a>
@@ -138,18 +136,13 @@
                     <!-- left sidebar-->
                     <div class="space-y-5 flex-shrink-0 lg:w-7/12">
 
-                        <!-- post 1-->
-                        {% for post in posts %}
+                        <!-- post -->
+                        {% for post in posts reversed %}
                         <div class="bg-white shadow rounded-md  -mx-2 lg:mx-0">
 
                             <!-- post header-->
                             <div class="flex justify-between items-center px-4 py-3">
                                 <div class="flex flex-1 items-center space-x-4">
-<!--                                    <a href="#">-->
-<!--                                        <div class="bg-gradient-to-tr from-yellow-600 to-pink-600 p-0.5 rounded-full">-->
-<!--                                            <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" class="bg-gray-200 border border-white rounded-full w-8 h-8">-->
-<!--                                        </div>-->
-<!--                                    </a>-->
                                     <span class="block font-semibold ">@{{post.user}} </span>
                                 </div>
                               <div>
@@ -202,11 +195,18 @@
                             <div class="py-3 px-4 space-y-3">
 
                                 <div class="flex space-x-4 lg:font-bold">
-                                    <a href="#" class="flex items-center space-x-2">
+                                    <a href="/likes?post_id={{post.id}}" class="flex items-center space-x-2">
                                         <div class="p-2 rounded-full text-black">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="25" height="25" class="">
                                                 <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
                                             </svg>
+                                            {% if post.no_of_likes == 0 %}
+                                                <p>No Likes yet</p>
+                                            {% elif post.no_of_likes%}
+                                                <p>Liked by {{post.no_of_likes}} person</p>
+                                            {% else %}
+                                                <p>Liked by {{post.no_of_likes}} persons</p>
+                                            {% endif %}
                                         </div>
 
                                     </a>
@@ -223,50 +223,12 @@
 
                                     </a>
                                 </div>
-<!--                                <div class="flex items-center space-x-3">-->
-<!--                                    <div class="flex items-center">-->
-<!--                                        <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="w-6 h-6 rounded-full border-2 border-white ">-->
-<!--                                        <img src="{% static 'assets/images/avatars/avatar-4.jpg' %}" alt="" class="w-6 h-6 rounded-full border-2 border-white  -ml-2">-->
-<!--                                        <img src="{% static 'assets/images/avatars/avatar-2.jpg' %}" alt="" class="w-6 h-6 rounded-full border-2 border-white  -ml-2">-->
-<!--                                    </div>-->
-<!--                                    <div class="">-->
-<!--                                        Liked <strong> taiye</strong> and <strong> 209 Others </strong>-->
-<!--                                    </div>-->
-<!--                                </div>-->
+
                                 <p>
                                     <a><strong>{{post.user}} </strong>{{post.caption}}</a>
                                 </p>
 
-<!--                                <div class="border-t pt-4 space-y-4 ">-->
-<!--                                    <div class="flex">-->
-<!--                                        <div class="w-10 h-10 rounded-full relative flex-shrink-0">-->
-<!--                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">-->
-<!--                                        </div>-->
-<!--&lt;!&ndash;                                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <p class="leading-6">Y'all like billie eillish? <urna class="i uil-heart"></urna> <i&ndash;&gt;-->
-<!--&lt;!&ndash;                                                    class="uil-grin-tongue-wink"> </i> </p>&ndash;&gt;-->
-<!--&lt;!&ndash;                                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>&ndash;&gt;-->
-<!--&lt;!&ndash;                                        </div>&ndash;&gt;-->
-<!--                                    </div>-->
-<!--                                    <div class="flex">-->
-<!--                                        <div class="w-10 h-10 rounded-full relative flex-shrink-0">-->
-<!--                                            <img src="{% static 'assets/images/avatars/avatar-1.jpg' %}" alt="" class="absolute h-full rounded-full w-full">-->
-<!--                                        </div>-->
-<!--                                        <div class="text-gray-700 py-2 px-3 rounded-md bg-gray-100 h-full relative lg:ml-5 ml-2 lg:mr-20   ">-->
-<!--                                            <p class="leading-6">She's my favourite <i class="uil-grin-tongue-wink-alt"></i>-->
-<!--                                            </p>-->
-<!--                                            <div class="absolute w-3 h-3 top-3 -left-1 bg-gray-100 transform rotate-45 "></div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
 
-<!--                                <div class="bg-gray-100 bg-gray-100 rounded-full rounded-md relative ">-->
-<!--                                    <input type="text" placeholder="post a comment" class="bg-transparent max-h-10 shadow-none">-->
-<!--                                    <div class="absolute bottom-0 flex h-full items-center right-0 right-3 text-xl space-x-2">-->
-<!--                                        <a href="#"> <i class="uil-image"></i></a>-->
-<!--                                        <a href="#"> <i class="uil-video"></i></a>-->
-<!--                                    </div>-->
-<!--                                </div>-->
 
                             </div>
 
@@ -371,7 +333,6 @@
     <script src="{% static 'assets/js/custom.js' %}"></script>
 
 
-<!--    <script src="{% static '../../unpkg.com/ionicons%405.2.3/dist/ionicons.js' %}"></script>-->
 </body>
 
 
